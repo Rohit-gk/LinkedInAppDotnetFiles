@@ -10,41 +10,27 @@ namespace LinkedInAppProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobController : ControllerBase
+    public class UserProfileController : ControllerBase
     {
-        private readonly IJobService _jobService;
         private readonly UserManager<ApplicationUserNew> _userManager;
         private readonly RoleManager<IdentityRole> roleManger;
+        private readonly IUserProfileService _userProfileService;
 
-        public JobController(IJobService jobService, UserManager<ApplicationUserNew> userManager, RoleManager<IdentityRole> roleManger)
+        public UserProfileController(UserManager<ApplicationUserNew> userManager, RoleManager<IdentityRole> roleManger, IUserProfileService userProfileService)
         {
-            _jobService = jobService;
-            this.roleManger = roleManger;
-            this._userManager = userManager;
+            _userManager = userManager;
+            _userProfileService = userProfileService;
         }
+
 
         [HttpGet]
-        public IActionResult Jobs()
-        {
-            try
-            {
-                return Ok(_jobService.Jobs());
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException("Error" + ex.Message);
-            }
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> AddJob(JobModel job)
+        [Route("[action]")]
+        public async Task<IActionResult> GetUserProfile()
         {
             try
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                job.CreatedBy = user.Id; 
-                return Ok(await _jobService.AddJob(job));
+                return Ok(_userProfileService.GetUserProfile(user.Id));
             }
             catch (Exception ex)
             {
@@ -53,17 +39,21 @@ namespace LinkedInAppProject.Controllers
         }
 
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteJob(int id)
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserProfile(UserProfileModel userProfileModel)
         {
             try
             {
-                return Ok(_jobService.DeleteJob(id));
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                userProfileModel.Id = user.Id;
+                return Ok(_userProfileService.UpdateUserProfile(userProfileModel));
             }
             catch (Exception ex)
             {
+
                 throw new InvalidOperationException("Error" + ex.Message);
             }
         }
+
     }
 }

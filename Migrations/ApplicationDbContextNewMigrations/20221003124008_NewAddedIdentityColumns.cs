@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LinkedInAppProject.Migrations
+namespace LinkedInAppProject.Migrations.ApplicationDbContextNewMigrations
 {
-    public partial class addedfieldinapplicationusertable : Migration
+    public partial class NewAddedIdentityColumns : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,19 +25,13 @@ namespace LinkedInAppProject.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "FirstName",
-                table: "AspNetUsers",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
                 name: "Headline",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "LastName",
+                name: "Name",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
                 nullable: true);
@@ -70,15 +64,11 @@ namespace LinkedInAppProject.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "FirstName",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropColumn(
                 name: "Headline",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "LastName",
+                name: "Name",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(

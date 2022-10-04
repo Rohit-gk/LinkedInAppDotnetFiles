@@ -34,20 +34,12 @@ namespace LinkedInAppProject.Services
                 Postion = job.Postion,
                 OrganizationLogo = job.OrganizationLogo,
                 CreatedBy = job.CreatedBy
-
-
             };
 
             var result = await JobDal.AddJob(obj);
             return new JobModel
             {
                 JobId = result.JobId,
-                //Title = result.Title,
-                //Content = result.Content,
-                //Summary = result.Summary,
-                //ImageUrl = result.ImageUrl,
-                //UrlHandle = result.UrlHandle,
-                //Author = result.Author
             };
         }
 

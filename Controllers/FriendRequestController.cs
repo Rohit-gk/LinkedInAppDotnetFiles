@@ -1,12 +1,8 @@
 ﻿using LinkedInAppProject.Authentication;
-using LinkedInAppProject.Model;
 using LinkedInAppProject.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LinkedInAppProject.Controllers
@@ -16,11 +12,11 @@ namespace LinkedInAppProject.Controllers
     public class FriendRequestController : ControllerBase
     {
         private readonly IFriendRequestService _friendRequestService;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUserNew> _userManager;
         private readonly RoleManager<IdentityRole> roleManger;
        
 
-        public FriendRequestController(IFriendRequestService friendRequestService, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManger)
+        public FriendRequestController(IFriendRequestService friendRequestService, UserManager<ApplicationUserNew> userManager, RoleManager<IdentityRole> roleManger)
         {
             _friendRequestService = friendRequestService;
             this.roleManger = roleManger;
@@ -36,7 +32,6 @@ namespace LinkedInAppProject.Controllers
             try
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                //string loginUserId = user.Id;
                 return Ok(_friendRequestService.AllNonFriendConnection(user.Id));
             }
             catch (Exception ex)
@@ -61,10 +56,7 @@ namespace LinkedInAppProject.Controllers
          
             try
             {
-                // var user1 = await _userManager.GetUserAsync(User);
-           
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                //string loginUserId = user.Id;
                 return Ok(await _friendRequestService.AddFriendRequest(receiverId, user.Id));
             }
             catch (Exception ex)
@@ -83,9 +75,6 @@ namespace LinkedInAppProject.Controllers
             }
             catch (Exception ex)
             {
-
-
-
                 return BadRequest(ex.Message);
             }
         }

@@ -41,12 +41,6 @@ namespace LinkedInAppProject.Services
             return new PostModel
             {
                 Id = result.Id,
-                //Title = result.Title,
-                //Content = result.Content,
-                //Summary = result.Summary,
-                //ImageUrl = result.ImageUrl,
-                //UrlHandle = result.UrlHandle,
-                //Author = result.Author
             };
         }
 
@@ -124,5 +118,6 @@ namespace LinkedInAppProject.Services
             };
 
         }
+    
     }
 }

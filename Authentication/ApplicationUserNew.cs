@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinkedInAppProject.Authentication
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUserNew : IdentityUser
     {
         public string Name { get; set; }
         public string BirthDate { get; set; }

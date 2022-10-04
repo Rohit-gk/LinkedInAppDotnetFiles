@@ -20,11 +20,11 @@ namespace JWTAuthenticationWithSwagger.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly UserManager<ApplicationUserNew> userManager;
         private readonly RoleManager<IdentityRole> roleManger;
         private readonly IConfiguration _configuration;
 
-        public AuthenticateController(UserManager<ApplicationUser> userManager,RoleManager<IdentityRole> roleManger, IConfiguration configuration)
+        public AuthenticateController(UserManager<ApplicationUserNew> userManager,RoleManager<IdentityRole> roleManger, IConfiguration configuration)
         {
             this.roleManger = roleManger;
             this.userManager = userManager;
@@ -96,7 +96,7 @@ namespace JWTAuthenticationWithSwagger.Controllers
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
-            ApplicationUser user = new ApplicationUser()
+            ApplicationUserNew user = new ApplicationUserNew()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
@@ -129,7 +129,7 @@ namespace JWTAuthenticationWithSwagger.Controllers
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
-            ApplicationUser user = new ApplicationUser()
+            ApplicationUserNew user = new ApplicationUserNew()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),

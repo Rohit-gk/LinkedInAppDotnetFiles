@@ -1,7 +1,5 @@
 ﻿using LinkedInAppProject.DAL;
-using LinkedInAppProject.Entities;
 using LinkedInAppProject.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,13 +25,6 @@ namespace LinkedInAppProject.Services
 
         public async Task<FriendRequestModel> AddFriendRequest(string receiverId, string senderId)
         {
-            //var Object = new FriendRequest
-            //{
-            //    SenderId = obj.SenderId,
-            //    ReceiverId = obj.ReceiverId,
-            //    status = "false"
-            //};
-
             var result = await _friendRequestDal.AddFriendRequest(receiverId, senderId);
             return new FriendRequestModel
             {
@@ -56,7 +47,6 @@ namespace LinkedInAppProject.Services
             
         }
 
-
         public IEnumerable<NonConnectionFriendModel> AllNonFriendConnection(string loginUserId)
         {
             var user = _friendRequestDal.AllNonFriendConnection(loginUserId);
@@ -70,12 +60,10 @@ namespace LinkedInAppProject.Services
                     }).ToList();
         }
 
-
         public Entities.FriendRequest UpdateInvitionStatus(int RequestId, string status)
         {
             var res = _friendRequestDal.UpdateInvitionStatus(RequestId, status);
             return res;
-
         }
 
     }

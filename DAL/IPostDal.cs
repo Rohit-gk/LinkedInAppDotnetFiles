@@ -1,5 +1,4 @@
 ﻿using LinkedInAppProject.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,9 +16,9 @@ namespace LinkedInAppProject.DAL
 
     public class PostDal : IPostDal
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContextNew _context;
 
-        public PostDal(ApplicationDbContext context)
+        public PostDal(ApplicationDbContextNew context)
         {
             this._context = context;
         }

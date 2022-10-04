@@ -1,6 +1,5 @@
 ﻿using LinkedInAppProject.Entities;
 using LinkedInAppProject.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,16 +17,15 @@ namespace LinkedInAppProject.DAL
 
     public class FriendRequestDal : IFriendRequestDal
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContextNew _context;
 
-        public FriendRequestDal(ApplicationDbContext context)
+        public FriendRequestDal(ApplicationDbContextNew context)
         {
             this._context = context;
         }
 
         public async Task<FriendRequest> AddFriendRequest(string receiverId, string senderId)
         {
-
             FriendRequest friendRequest = _context.FriendRequests.FirstOrDefault(x => x.SenderId == senderId && x.status.ToLower() == "true");
             if (friendRequest == null)
             {
@@ -45,7 +43,6 @@ namespace LinkedInAppProject.DAL
             }
             return friendRequest;
         }
-
         public IEnumerable<RequestViewModel> GetFriendRequests(string id)
         {
             var methodSelect = _context.FriendRequests.Where(s => s.ReceiverId == id)
@@ -60,7 +57,6 @@ namespace LinkedInAppProject.DAL
 
             return methodSelect;
         }
-
 
         public IEnumerable<NonConnectionFriendModel> AllNonFriendConnection(string loginUserId)
         {
@@ -79,8 +75,6 @@ namespace LinkedInAppProject.DAL
             return allUsers;
         }
 
-
-
         public Entities.FriendRequest UpdateInvitionStatus(int RequestId, string status)
         {
 
@@ -91,8 +85,5 @@ namespace LinkedInAppProject.DAL
             
             return friendRequest;
         }
-
-
-
     }
 }

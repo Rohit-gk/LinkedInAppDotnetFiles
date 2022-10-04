@@ -1,5 +1,4 @@
 ﻿using LinkedInAppProject.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,14 +10,13 @@ namespace LinkedInAppProject.DAL
         IEnumerable<Job> Jobs();
         Task<Job> AddJob(Job job);
         Job DeleteJob(int id);
-
     }
 
     public class JobDal : IJobDal
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContextNew _context;
 
-        public JobDal(ApplicationDbContext context)
+        public JobDal(ApplicationDbContextNew context)
         {
             this._context = context;
         }
@@ -41,7 +39,6 @@ namespace LinkedInAppProject.DAL
             }
             return null;
         }
-
         public IEnumerable<Job> Jobs()
         {
             return _context.Jobs.ToList();

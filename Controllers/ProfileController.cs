@@ -1,16 +1,11 @@
 ﻿using LinkedInAppProject.Model;
 using LinkedInAppProject.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LinkedInAppProject.Controllers
 {
-    //[Authorize(Roles = UserRoles.User)]
     [Route("api/[controller]")]
     [ApiController]
     public class ProfileController : ControllerBase

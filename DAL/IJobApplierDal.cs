@@ -1,27 +1,23 @@
 ﻿using LinkedInAppProject.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LinkedInAppProject.DAL
 {
     public interface IJobApplierDal
     {
-        Task<JobApplier> JobApplier(JobApplier job);
+       JobApplier JobAppliers(JobApplier jobApplier);
     }
     public class JobApplierDal : IJobApplierDal
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContextNew _context;
 
-        public JobApplierDal(ApplicationDbContext context)
+        public JobApplierDal(ApplicationDbContextNew context)
         {
             this._context = context;
         }
-        public async Task<JobApplier> JobApplier(JobApplier job)
+        public JobApplier JobAppliers(JobApplier jobApplier)
         {
-            var data = await _context.JobAppliers.AddAsync(job);
-            await _context.SaveChangesAsync();
+            var data =  _context.JobAppliers.Add(jobApplier);
+           _context.SaveChanges();
             return data.Entity;
         }
     }

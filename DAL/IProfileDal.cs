@@ -1,6 +1,4 @@
 ﻿using LinkedInAppProject.Entities;
-using LinkedInAppProject.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,8 +16,8 @@ namespace LinkedInAppProject.DAL
 
     public class ProfileDal : IProfileDal
     {
-        private readonly ApplicationDbContext _context;
-        public ProfileDal(ApplicationDbContext context)
+        private readonly ApplicationDbContextNew _context;
+        public ProfileDal(ApplicationDbContextNew context)
         {
             _context = context;
         }

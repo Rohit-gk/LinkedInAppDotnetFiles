@@ -4,14 +4,16 @@ using LinkedInAppProject;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace LinkedInAppProject.Migrations
+namespace LinkedInAppProject.Migrations.ApplicationDbContextNewMigrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicationDbContextNew))]
+    [Migration("20221003124937_Added_Job_Posts_Tables")]
+    partial class Added_Job_Posts_Tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace LinkedInAppProject.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("LinkedInAppProject.Authentication.ApplicationUser", b =>
+            modelBuilder.Entity("LinkedInAppProject.Authentication.ApplicationUserNew", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -181,7 +183,7 @@ namespace LinkedInAppProject.Migrations
 
                     b.HasIndex("JobId");
 
-                    b.ToTable("JobAppliers");
+                    b.ToTable("JobApplier");
                 });
 
             modelBuilder.Entity("LinkedInAppProject.Entities.Post", b =>
@@ -410,7 +412,7 @@ namespace LinkedInAppProject.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("LinkedInAppProject.Authentication.ApplicationUser", null)
+                    b.HasOne("LinkedInAppProject.Authentication.ApplicationUserNew", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -419,7 +421,7 @@ namespace LinkedInAppProject.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("LinkedInAppProject.Authentication.ApplicationUser", null)
+                    b.HasOne("LinkedInAppProject.Authentication.ApplicationUserNew", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -434,7 +436,7 @@ namespace LinkedInAppProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LinkedInAppProject.Authentication.ApplicationUser", null)
+                    b.HasOne("LinkedInAppProject.Authentication.ApplicationUserNew", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -443,7 +445,7 @@ namespace LinkedInAppProject.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("LinkedInAppProject.Authentication.ApplicationUser", null)
+                    b.HasOne("LinkedInAppProject.Authentication.ApplicationUserNew", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

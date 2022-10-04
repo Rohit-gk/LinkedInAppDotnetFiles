@@ -2,15 +2,13 @@
 using LinkedInAppProject.Entities;
 using LinkedInAppProject.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace LinkedInAppProject.Services
 {
     public interface IJobApplierService
     {
-        Task<JobApplierModel> JobApplier(JobApplierModel job);
+       JobApplierModel JobAppliers(JobApplierModel job);
     }
 
     public class JobApplierService : IJobApplierService
@@ -21,17 +19,16 @@ namespace LinkedInAppProject.Services
             this.JobApplierDal = JobApplierDal;
         }
 
-        public async Task<JobApplierModel> JobApplier(JobApplierModel job)
+        public JobApplierModel JobAppliers(JobApplierModel job)
         {
             var obj = new JobApplier
             {
                 JobId = job.JobId,
-                Id = job.Id,
                 ApplicantId = job.ApplicantId,
                 AppliedDate = DateTime.Now,
             };
 
-            var result = await JobApplierDal.JobApplier(obj);
+            var result =  JobApplierDal.JobAppliers(obj);
             return new JobApplierModel
             {
                 JobId = result.JobId,

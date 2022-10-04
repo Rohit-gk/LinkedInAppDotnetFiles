@@ -1,12 +1,9 @@
 ﻿using LinkedInAppProject.Authentication;
 using LinkedInAppProject.Model;
 using LinkedInAppProject.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LinkedInAppProject.Controllers
@@ -16,10 +13,10 @@ namespace LinkedInAppProject.Controllers
     public class JobApplierController : ControllerBase
     {
         private readonly IJobApplierService _jobApplierService;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUserNew> _userManager;
         private readonly RoleManager<IdentityRole> roleManger;
 
-        public JobApplierController(JobApplierService jobApplierService, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManger)
+        public JobApplierController(IJobApplierService jobApplierService, UserManager<ApplicationUserNew> userManager, RoleManager<IdentityRole> roleManger)
         {
             _jobApplierService = jobApplierService;
             _userManager = userManager;
@@ -32,7 +29,7 @@ namespace LinkedInAppProject.Controllers
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 job.ApplicantId = user.Id;
-                return Ok(await _jobApplierService.JobApplier(job));
+                return Ok( _jobApplierService.JobAppliers(job));
             }
             catch (Exception ex)
             {
